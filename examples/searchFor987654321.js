@@ -12,16 +12,16 @@ else
 
 // Sequential search
 console.log("Searching for 987654321 on the CPU.");
-var t = Date.now();
+var t = performance.now();
 var found = false;
 for (var i=0; i<1000000000; ++i)
   if (i === 987654321)
     found = true;
-console.log("Found on the CPU? "+found+" (time: "+(Date.now()-t)/1000+"s)");
+console.log("Found on the CPU? "+found+" (time: "+(performance.now()-t)/1000+"s)");
 
 // Parallel search
 console.log("Searching for 987654321 on the GPU.");
-var t = Date.now();
+var t = performance.now();
 var totalMonkeys = 20000;
 var attemptsPerMonkey = 60000;
 var monkeyStartingNumber = [];
@@ -37,6 +37,6 @@ monkeys.work(totalMonkeys, `
       gotIt = true;
   found(gotIt ? 0 : 1) := 1.0;
 `);
-console.log("Found on the GPU? "+(!!monkeys.get("found")[0])+" (time: "+(Date.now()-t)/1000+"s)");
+console.log("Found on the GPU? "+(!!monkeys.get("found")[0])+" (time: "+(performance.now()-t)/1000+"s)");
 
 
